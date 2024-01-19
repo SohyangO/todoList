@@ -2,9 +2,7 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [todoList, setTodoList] = useState([
-    { id: 0, todo: "", detail: "", isDone: false },
-  ]);
+  const [todoList, setTodoList] = useState([]);
 
   const [todo, setTodo] = useState("");
   const [detail, setDetail] = useState("");
@@ -24,14 +22,15 @@ function App() {
       id: todoList.length + 1,
       todo,
       detail,
+      isDone: false,
     };
     return setTodoList([...todoList, newTodo]);
   };
 
-  // const remove = (id) => {
-  //   const removedCard = todoList.filter((item) => item.id !== id);
-  //   setTodo(removedCard);
-  // };
+  const onDelete = (id) => {
+    const removedCard = todoList.filter((item) => item.id !== id);
+    setTodoList(removedCard);
+  };
 
   return (
     <div>
@@ -54,10 +53,10 @@ function App() {
           <div key={item.id} className="ing">
             <p>{item.todo}</p>
             <p>{item.detail}</p>
-            <button className="delete">삭제하기</button>
-            <button className="complete" onClick={() => setIsDone(true)}>
-              완료
+            <button className="delete" onClick={() => onDelete(item.id)}>
+              삭제하기
             </button>
+            <button className="complete">완료</button>
           </div>,
         ];
       })}

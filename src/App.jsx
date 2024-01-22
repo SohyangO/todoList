@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import { v4 } from "uuid";
 
 function App() {
   const [todoList, setTodoList] = useState([]);
@@ -28,13 +29,12 @@ function App() {
     setTodo("");
     setDetail("");
     const newTodo = {
-      id: todoList.length + 1, // ?? 이거 어떻게 해야 하지ㅜㅜ?
+      id: v4(),
       todo,
       detail,
       isDone: false,
     };
     console.log(newTodo);
-    console.log(todoList);
     return setTodoList([...todoList, newTodo]);
   };
 
@@ -56,63 +56,77 @@ function App() {
     <div>
       <header className="App">
         <h1>My Todo List</h1>
-        <p>React</p>
       </header>
-      <div className="addTodo">
-        <div className="addInput">
-          제목 <input value={todo} onChange={inputTodo} />
-          내용 <input value={detail} onChange={inputDetail} />
+      <section>
+        <div className="addTodo">
+          <div className="addInput">
+            할 일 :&nbsp;
+            <input value={todo} onChange={inputTodo} />
+            세부내용 :&nbsp; <input value={detail} onChange={inputDetail} />
+          </div>
+          <button className="add" onClick={addTodo}>
+            추가하기
+          </button>
         </div>
-        <button className="add" onClick={addTodo}>
-          추가하기
-        </button>
-      </div>
-      <div className="working">
-        <p>Working</p>
-        {todoList.map((item) => {
-          if (!item.isDone) {
-            return [
-              <div key={item.id}>
-                <p>{item.todo}</p>
-                <p>{item.detail}</p>
-                <p>{item.id}</p>
-                <button className="delete" onClick={() => deleteList(item.id)}>
-                  삭제하기
-                </button>
-                <button
-                  className="complete"
-                  onClick={() => changeState(item.id)}
-                >
-                  {item.isDone ? "취소" : "완료"}
-                </button>
-              </div>,
-            ];
-          }
-        })}
-      </div>
-      <div className="done">
-        <p>Done!</p>
-        {todoList.map((item) => {
-          if (item.isDone) {
-            return [
-              <div key={item.id}>
-                <p>{item.todo}</p>
-                <p>{item.detail}</p>
-                <p>{item.id}</p>
-                <button className="delete" onClick={() => deleteList(item.id)}>
-                  삭제하기
-                </button>
-                <button
-                  className="complete"
-                  onClick={() => changeState(item.id)}
-                >
-                  {item.isDone ? "취소" : "완료"}
-                </button>
-              </div>,
-            ];
-          }
-        })}
-      </div>
+        <div className="working">
+          <p className="checkWork">Working...🔥</p>
+          {todoList.map((item) => {
+            if (!item.isDone) {
+              return [
+                <div key={item.id} className="todoCard">
+                  <strong>
+                    <p>{item.todo}</p>
+                  </strong>
+                  <p>{item.detail}</p>
+                  <div className="btns">
+                    <button
+                      className="delete"
+                      onClick={() => deleteList(item.id)}
+                    >
+                      삭제하기
+                    </button>
+                    <button
+                      className="complete"
+                      onClick={() => changeState(item.id)}
+                    >
+                      {item.isDone ? "취소" : "완료"}
+                    </button>
+                  </div>
+                </div>,
+              ];
+            }
+          })}
+        </div>
+        <div className="done">
+          <p className="checkWork">Done..!🥳</p>
+          {todoList.map((item) => {
+            if (item.isDone) {
+              return [
+                <div key={item.id} className="todoCard">
+                  <strong>
+                    <p>{item.todo}</p>
+                  </strong>
+                  <p>{item.detail}</p>
+                  <div className="btns">
+                    <button
+                      className="delete"
+                      onClick={() => deleteList(item.id)}
+                    >
+                      삭제하기
+                    </button>
+                    <button
+                      className="complete"
+                      onClick={() => changeState(item.id)}
+                    >
+                      {item.isDone ? "취소" : "완료"}
+                    </button>
+                  </div>
+                </div>,
+              ];
+            }
+          })}
+        </div>
+      </section>
     </div>
   );
 }

@@ -1,19 +1,29 @@
 .App {
   display: flex;
+  max-width: 1200px;
+  min-width: 800px;
+  margin: auto;
 }
 h1 {
   display: inline-block;
   font-weight: 500;
 }
-p {
-  display: flex;
-  align-items: center;
-  margin: auto 0 auto auto;
+.checkWork {
+  margin-top: 20px;
+  margin-left: 35px;
+  font-size: 24px;
+  font-weight: 600;
+}
+section {
+  max-width: 1200px;
+  min-width: 800px;
+  margin: auto;
 }
 .addTodo {
   display: flex;
-  height: 80px;
-  background-color: cornsilk;
+  height: 120px;
+  /* border: 2px solid rgb(170, 170, 170); */
+  background-color: #f8e9ff;
   border-radius: 15px;
 }
 .addInput {
@@ -26,14 +36,56 @@ p {
   align-items: center;
   float: right;
   margin: auto 20px auto auto;
-  height: 50px;
+  background-color: #ebbfff;
+  border: transparent;
+  border-radius: 13px;
+  height: 60%;
+  cursor: pointer;
 }
-
+input {
+  margin-left: 10px;
+  margin-right: 15px;
+  line-height: 2;
+}
 .working {
-  height: 400px;
-  background-color: bisque;
+  /* border: 2px solid rgb(170, 170, 170); */
+  border-radius: 15px;
+  margin-top: 30px;
+}
+strong > p {
+  font-size: 18px;
 }
 .done {
-  height: 400px;
-  background-color: rgb(141, 202, 134);
+  /* border: 2px solid rgb(170, 170, 170); */
+  border-radius: 15px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.todoCard {
+  width: 200px;
+  margin: 20px 30px;
+  border: 2px solid #e8bbfb;
+  border-radius: 25px;
+  padding: 5px 25px;
+  display: inline-block;
+}
+.btns {
+  margin: 5px 10px;
+  padding: 10px 18px;
+}
+button {
+  display: inline-block;
+  background-color: transparent;
+  padding: 10px;
+  border: 2px solid darkviolet;
+  border-radius: 15px;
+}
+.delete {
+  margin-right: 10px;
+  background-color: #ff9f98;
+  border: 2px solid #ff9f98;
+}
+.complete {
+  background-color: #98caff;
+  border: 2px solid #98caff;
 }

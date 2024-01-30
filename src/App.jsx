@@ -7,6 +7,7 @@ function App() {
 
   const [todo, setTodo] = useState("");
   const [detail, setDetail] = useState("");
+  const [deadLine, setDeadLine] = useState("");
 
   const inputTodo = (event) => {
     // 제목에 내용 입력 시 실시간으로 출력
@@ -16,7 +17,11 @@ function App() {
     setDetail(event.target.value);
   };
 
-  const addTodo = () => {
+  const inputDate = (event) => {
+    setDeadLine(event.target.value);
+  };
+
+  const handleAddButtonClick = (data) => {
     // 추가하기 버튼 클릭 시 추가하기
     if (todo.length === 0) {
       alert("제목을 입력해주세요.");
@@ -33,11 +38,14 @@ function App() {
       todo,
       detail,
       isDone: false,
+      deadLine,
     };
-    console.log(newTodo);
     return setTodoList([...todoList, newTodo]);
   };
 
+  const handleDeleteButtonClick = (id) => () => {
+    deleteList(id);
+  };
   const deleteList = (id) => {
     //삭제 버튼 클릭 시 해당 id 값이랑 일치하는 카드만 필터링해서 삭제
     const removedCard = todoList.filter((item) => item.id !== id);
@@ -63,8 +71,14 @@ function App() {
             할 일 :&nbsp;
             <input value={todo} onChange={inputTodo} />
             세부내용 :&nbsp; <input value={detail} onChange={inputDetail} />
+            마감날짜 :&nbsp;{" "}
+            <input
+              type="date"
+              value={deadLine}
+              onChange={(event) => setDeadLine(event.target.value)}
+            />
           </div>
-          <button className="add" onClick={addTodo}>
+          <button className="add" onClick={handleAddButtonClick}>
             추가하기
           </button>
         </div>
@@ -78,6 +92,13 @@ function App() {
                     <p>{item.todo}</p>
                   </strong>
                   <p>{item.detail}</p>
+                  <time>
+                    {new Date(item.deadLine).toLocaleDateString("ko-KR", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </time>
                   <div className="btns">
                     <button
                       className="delete"
@@ -110,7 +131,7 @@ function App() {
                   <div className="btns">
                     <button
                       className="delete"
-                      onClick={() => deleteList(item.id)}
+                      onClick={handleDeleteButtonClick(item.id)}
                     >
                       삭제하기
                     </button>

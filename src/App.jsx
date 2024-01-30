@@ -8,6 +8,7 @@ function App() {
   const [todo, setTodo] = useState("");
   const [detail, setDetail] = useState("");
   const [deadLine, setDeadLine] = useState("");
+  const [sortOrder, setSortOrder] = useState("asc");
 
   const inputTodo = (event) => {
     // 제목에 내용 입력 시 실시간으로 출력
@@ -15,10 +16,6 @@ function App() {
   };
   const inputDetail = (event) => {
     setDetail(event.target.value);
-  };
-
-  const inputDate = (event) => {
-    setDeadLine(event.target.value);
   };
 
   const handleAddButtonClick = (data) => {
@@ -60,6 +57,22 @@ function App() {
     setTodoList(updateState); // setIsDone으로 상태관리 시, 모든 카드가 다 바뀜! setTodoList로 해야 해!
   };
 
+  const sortList = (event) => {
+    const nextSortOrder = event.target.value;
+    setSortOrder(nextSortOrder);
+    if (nextSortOrder === "asc") {
+      setTodoList((todoList) =>
+        [...todoList].sort(
+          (a, b) => new Date(a.deadLine) - new Date(b.deadLine)
+        )
+      );
+      return;
+    }
+    setTodoList((todoList) =>
+      [...todoList].sort((a, b) => new Date(b.deadLine) - new Date(a.deadLine))
+    );
+  };
+
   return (
     <div>
       <header className="App">
@@ -82,6 +95,14 @@ function App() {
             추가하기
           </button>
         </div>
+        <select value={sortOrder} onChange={sortList}>
+          <option value="asc" selected>
+            오름차순
+          </option>
+          <option value="desc" selected>
+            내림차순
+          </option>
+        </select>
         <div className="working">
           <p className="checkWork">Working...🔥</p>
           {todoList.map((item) => {
@@ -128,6 +149,13 @@ function App() {
                     <p>{item.todo}</p>
                   </strong>
                   <p>{item.detail}</p>
+                  <time>
+                    {new Date(item.deadLine).toLocaleDateString("ko-KR", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </time>
                   <div className="btns">
                     <button
                       className="delete"

@@ -1,37 +1,41 @@
-.App {
+import styled from "styled-components";
+
+export const Header = styled.header`
   display: flex;
   max-width: 1200px;
   min-width: 800px;
   margin: auto;
-}
-h1 {
+`;
+
+export const MainTitle = styled.h1`
   display: inline-block;
   font-weight: 500;
-}
-.checkWork {
+`;
+export const CheckWork = styled.p`
   margin-top: 20px;
   margin-left: 35px;
   font-size: 24px;
   font-weight: 600;
-}
-section {
+`;
+export const Section = styled.section`
   max-width: 1200px;
   min-width: 800px;
   margin: auto;
-}
-.addTodo {
+`;
+
+export const AddTodo = styled.div`
   display: flex;
   height: 120px;
-  /* border: 2px solid rgb(170, 170, 170); */
   background-color: #f8e9ff;
   border-radius: 15px;
-}
-.addInput {
+`;
+
+export const AddInput = styled.div`
   display: flex;
   align-items: center;
   margin: auto 150px auto 30px;
-}
-.add {
+`;
+export const Add = styled.button`
   display: flex;
   align-items: center;
   float: right;
@@ -41,29 +45,29 @@ section {
   border-radius: 13px;
   height: 60%;
   cursor: pointer;
-}
-input {
+`;
+export const Input = styled.input`
   margin-left: 10px;
   margin-right: 15px;
   line-height: 2;
-}
-.working {
+`;
+export const Working = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 15px;
   margin-top: 30px;
-}
-strong > p {
+`;
+export const TodoTitle = styled.p`
   font-size: 18px;
-}
-.done {
+`;
+export const Done = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 15px;
   margin-top: 30px;
   margin-bottom: 30px;
-}
-.todoCard {
+`;
+export const TodoCard = styled.div`
   width: 200px;
   margin: 20px 30px;
   border: 2px solid #e8bbfb;
@@ -72,25 +76,26 @@ strong > p {
   display: flex;
   flex-direction: column;
   gap: 8px;
-}
-.btns {
+`;
+export const Btns = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 10px 0px;
-}
-button {
+`;
+export const Button = styled.button`
   display: inline-block;
   background-color: transparent;
   padding: 10px;
   border: 2px solid darkviolet;
-  border-radius: 15px;
-}
-.delete {
+`;
+export const Delete = styled.button`
   margin-right: 10px;
   background-color: #ff9f98;
   border: 2px solid #ff9f98;
-}
-.complete {
+  border-radius: 15px;
+`;
+export const Complete = styled.button`
   background-color: #98caff;
   border: 2px solid #98caff;
-}
+  border-radius: 15px;
+`;

@@ -76,6 +76,7 @@ export const TodoCard = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  text-decoration: ${(props) => (props.isDone ? "line-through" : "none")};
 `;
 export const Btns = styled.div`
   display: flex;

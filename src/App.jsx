@@ -107,7 +107,7 @@ function App() {
           {todoList.map((item) => {
             if (!item.isDone) {
               return [
-                <T.TodoCard className="todoCard">
+                <T.TodoCard isDone={item.isDone} className="todoCard">
                   <strong>
                     <T.TodoTitle>{item.todo}</T.TodoTitle>
                   </strong>
@@ -137,7 +137,7 @@ function App() {
           {todoList.map((item) => {
             if (item.isDone) {
               return [
-                <T.TodoCard key={item.id}>
+                <T.TodoCard isDone={item.isDone} key={item.id}>
                   <strong>
                     <T.TodoTitle>{item.todo}</T.TodoTitle>
                   </strong>

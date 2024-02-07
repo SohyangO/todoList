@@ -2,6 +2,7 @@ import { useState } from "react";
 import * as T from "./StyledComponent.jsx";
 import { v4 } from "uuid";
 import "./GlobalStyle.jsx";
+import { useNavigate } from "react-router-dom";
 
 function App() {
   const [todoList, setTodoList] = useState([]);
@@ -10,6 +11,11 @@ function App() {
   const [detail, setDetail] = useState("");
   const [deadLine, setDeadLine] = useState("");
   const [sortOrder, setSortOrder] = useState("asc");
+
+  const navigate = useNavigate();
+  const handleCardClick = (item) => {
+    navigate(`/detail/${item.id}`, { state: item });
+  };
 
   const inputTodo = (event) => {
     // 제목에 내용 입력 시 실시간으로 출력
@@ -107,7 +113,11 @@ function App() {
           {todoList.map((item) => {
             if (!item.isDone) {
               return [
-                <T.TodoCard isDone={item.isDone} className="todoCard">
+                <T.TodoCard
+                  onClick={() => handleCardClick(item)}
+                  isDone={item.isDone}
+                  className="todoCard"
+                >
                   <strong>
                     <T.TodoTitle>{item.todo}</T.TodoTitle>
                   </strong>
@@ -137,7 +147,11 @@ function App() {
           {todoList.map((item) => {
             if (item.isDone) {
               return [
-                <T.TodoCard isDone={item.isDone} key={item.id}>
+                <T.TodoCard
+                  onClick={() => handleCardClick(item)}
+                  isDone={item.isDone}
+                  key={item.id}
+                >
                   <strong>
                     <T.TodoTitle>{item.todo}</T.TodoTitle>
                   </strong>
